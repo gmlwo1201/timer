@@ -1,65 +1,74 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ClockScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+class ClockScreen extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _ClockScreenState createState() => _ClockScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+class _ClockScreenState extends State<ClockScreen> {
+  late String _currentTime1;
+  late String _currentTime2;
+  late Timer _timer;
+  
+  @override
+  void initState() {
+    super.initState();
+    _updateTime();
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _updateTime());
+    }
+  
+  
+  void _updateTime() {
     setState(() {
-      _counter++;
-    });
+      _currentTime1 = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      _currentTime2 = DateFormat('HH:mm:ss').format(DateTime.now());
+      });  
+  }
+  
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text("현재 시간")
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
+            const Text('현재 시간은'),
             Text(
-              '$_counter',
+              _currentTime1,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Text(
+              _currentTime2,
+              style: Theme.of(context).textTheme.headlineMedium,
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
