@@ -1,16 +1,7 @@
-# timer
+# 현재시간 띄우기
 
-A new Flutter project.
+* 화면에 현재 시간을 'yyyy-MM-dd HH:mm:ss' 형식으로 띄운다.
+* 시간은 실시간으로 흘러가게
+* inil 패키지를 이용해 현재시간 받음
+* 문자열 변수를 2개 생성해 시간을 한줄이 아닌 2줄로 보이게 설정
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
