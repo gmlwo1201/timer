@@ -52,13 +52,13 @@ class _ClockScreenState extends State<ClockScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("현재 시간")
+        title: Text("현재 시각")
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('현재 시간은'),
+            const Text('현재 시각'),
             Text(
               _currentTime1,
               style: Theme.of(context).textTheme.headlineMedium,
